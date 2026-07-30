@@ -1,17 +1,17 @@
-# driver_monitoring_system
+# Driver Monitoring System
 
-This is a project aimed to monitor a driver's status and actions, such as yawn, phonecall, etc.
+This project is designed to monitor a driver's status and behavior in real time, including drowsiness, yawning, phone usage, texting, and seatbelt detection using AI and computer vision.
 
 ## Architecture
 
-The driver monitoring system consists of two parts.
+The Driver Monitoring System consists of two main components:
 
-* Facial tracking: an API based on [Mediapipe](https://github.com/google/mediapipe) to track facial status, which predicts the eye status (open, close), if open, the gazing direction (left, right, center), and yawn.
-* Action detection: a deep learning model (MobileNet) to predcit driver's behavior (phonecall, texting). [Yolov5](https://github.com/ultralytics/yolov5) is further used to detect phones to enhance performance.
+- **Facial Tracking:** Uses MediaPipe to detect facial landmarks and monitor eye status (open/closed), gaze direction (left, right, center), and yawning.
+- **Action Detection:** Uses deep learning models to detect driver activities such as phone calls, texting, and seatbelt usage. YOLOv5 is used for object detection to improve accuracy.
 
 ## Requirements
 
-```
+```text
 python=3.8
 tensorflow=2.8.0
 torch=1.11.0
@@ -25,24 +25,27 @@ scikit-learn=1.0.2
 ## Usage
 
 ```bash
-$ git clone https://github.com/jhan15/driver_monitoring.git
-$ cd driver_monitoring
+# Run the Driver Monitoring System
+python dms.py --checkpoint models/model_split.h5 --video <path_to_video>
 
-# driver monitorting system
-$ python3 dms.py --checkpoint models/model_split.h5 --video <path_to_video> 
-                                                    --webcam <cam_id> # or
+# OR use webcam
+python dms.py --checkpoint models/model_split.h5 --webcam 0
 
-# play with only facial tracking
-$ python3 facial.py
+# Run facial tracking only
+python facial.py
 ```
 
-## Dataset
+## Features
 
-The dataset used to train action detection model is [DMD](https://github.com/Vicomtech/DMD-Driver-Monitoring-Dataset).
+- Driver drowsiness detection
+- Yawning detection
+- Eye status monitoring
+- Gaze tracking
+- Phone call detection
+- Texting detection
+- Seatbelt detection
+- Real-time AI-based monitoring
 
 ## Demo
 
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/62132206/158055802-8e1146f8-32ef-4ae4-967a-eb79ac42e172.gif?raw=true">
-  <img src="https://user-images.githubusercontent.com/62132206/158055799-22effa40-89d2-46da-a317-d58ea3e186b5.gif?raw=true">
-</p>
+The system processes live webcam input or recorded videos to monitor driver behavior and generate real-time alerts.
